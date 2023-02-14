@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>婚礼纪</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/base.css">
+        <link rel="stylesheet" type="text/css" href="css/global.css">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/module.css">
+        <script src="js/sea-modules/seajs/2.0.0/sea.js" data-config="marry/config" type="text/javascript"></script>
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="js/dist/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+    <div id="wrapper">
+    <nav id="topBar" class="ui-top-nav"></nav>
+    <section class="container" id="container">
+        <section class="clearfix">
+                <div id="indexBanner" class="ui-shadow">
+                    <div  class="banner-arr" id="scrollerPrev" data-role="prev">上一页</div>
+                    <div id="J_Slide">  <!-- 容器元素 -->
+                        <div class="ui-switchable-content" data-role="content">  <!-- 面板列表 -->
+                            <div data-role="panel" class="">
+                                <img src="assets/test/banner1.jpg" alt="xxx"/>
+                                <div class="download-panel">
+                                    <h3>免费下载</h3>
+                                    <div class="ui-download-btn">
+					                    <a href="https://itunes.apple.com/cn/app/hun-li-ji/id594402673?ls=1&mt=8" class="iphone" target="_blank">iphone</a>
+					                    <a href="http://marrymemo.com/MarryMemo.apk" class="android" target="_blank">android</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-role="panel" class="">
+                            	<a href="montage-nice.html"><img src="assets/images/banner2.png" alt="xxx"/></a>
+                            </div>
+                            <div data-role="panel" class="">
+                                <a href="http://weibo.com/marrymemo" target="_blank"><img src="assets/images/banner3.png" alt="xxx"/></a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="ui-switchable-nav" data-role="nav">
+                        <li data-role="trigger">标题 A</li>
+                        <li data-role="trigger">标题 B</li>
+                        <li data-role="trigger">标题 C</li>
+                    </ul>
+                    <div class="banner-arr" id="scrollerNext" data-role="next">下一页</div>
+                </div>
+            <div class="w980 ui-body-content ui-shadow">
+                <header class="ui-header">
+                    <h1>推荐画卷</h1>
+                    <a class="ui-btn middle ui-btn-green ui-header-more" href="montage-nice.html"> <span class="ui-btn-text"> 更多 </span> </a>
+                </header>
+                <section>
+                    <ul class="ui-pic-list clearfix" id="montageInclude"></ul>
+                    <script id="montage-template" type="text/x-handlebars-template">
+                        {{#montages}}
+                            <li class="ui-pic-item">
+                                <header>
+                                    <h1>{{title}}</h1>
+                                </header>
+                                <a class="read" href="montage-show.html#{{id}}">查看画卷</a>
+                            </li>
+                        {{/montages}}
+                    </script>
+                    <script type="text/javascript">
+                        seajs.use(['marry/application', '$'], function(App, $) {
+                            var montage=new App.montage();
+                            montage.get({
+                                element:"#montageInclude",
+                                type:"include",
+                                data:{
+//                                    nice:1,
+                                    pageNumber:9
+                                }
+                            });
+
+                            var template=new App.template();
+                            template.loadHeader("#indexUrl");
+                        });
+                    </script>
+                </section>
+            </div>
+        </section>
+    </section>
+    <footer class="ui-footer ui-shadow-top" id="foot"></footer>
+    <script type="text/javascript">
+
+        seajs.use(['marry/application', '$'], function(App, $) {
+            var template=new App.template();
+            template.loadFoot();
+        });
+    </script>
+
+</div>
+
+    <script type="text/javascript">
+        seajs.use(['carousel', '$'], function(Carousel, $) {
+            var carousel = new Carousel({
+                element: '#indexBanner',
+                triggers: '#indexBanner .ui-switchable-nav li',
+                easing: 'easeOutStrong',
+                effect: 'scrollx',
+                step: 1,
+                autoplay:true,
+                circular:true,
+                interval:3000,
+                viewSize: [980],
+                prevBtn: '#scroller-prev',
+                nextBtn: '#scroller-next'
+            }).render();
+        });
+
+    </script>
+    </body>
+</html>
